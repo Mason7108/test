@@ -1,0 +1,100 @@
+<htmL>
+    <head>
+        <title>Marvel Movie Trivia</title>
+        <style>
+            body {
+                padding : 10px 0;
+                border: 5px solid white;
+                text-align: center;
+                background: rgb(2,0,36);
+                background: linear-gradient(90deg, rgba(2,0,36,1) 0%, 
+                rgba(121,9,9,1) 44% rgba(0,212,255,1) 100%);
+                font-family: "Trebuchet MS", Helvetica sans-serif;
+                color: white;
+            }
+            p {
+                font-style: italic;
+            }
+        </style>
+    </head>
+    <body>
+        <script>
+            let questionNumber = ""
+            // Image Citations:
+            // Black Panther: https://www.amazon.com/PosterOffice-Black-Panther-Movie-Poster/dp/B079Z2DNDR/ref=asc_df_B079Z2DNDR/?tag=hyprod-20&linkCode=df0&hvadid=309837868223&hvpos=&hvnetw=g&hvrand=9639389235403603581&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9021735&hvtargid=pla-568496468627&psc=1&tag=&ref=&adgrpid=64520921227&hvpone=&hvptwo=&hvadid=309837868223&hvpos=&hvnetw=g&hvrand=9639389235403603581&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9021735&hvtargid=pla-568496468627
+            // Captain Marvel: https://www.amazon.com/CAPTAIN-MARVEL-POSTER-ORIGINAL-Version/dp/B07NNT8K3P
+            // Shang Chi: https://www.amazon.com/Trends-International-Shang-Chi-Rings-Teaser-Unframed/dp/B09BK3YVP9/ref=asc_df_B09BK3YVP9/?tag=hyprod-20&linkCode=df0&hvadid=540971280956&hvpos=&hvnetw=g&hvrand=2168267742501781273&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9021735&hvtargid=pla-1410488457331&psc=1
+            // Captain America: https://www.amazon.com/POSTER-STOP-ONLINE-Captain-America/dp/B08Z82QX9Y
+            // Black Widow: https://www.amazon.com/Black-Widow-Movie-Poster-Authenticity/dp/B08B4CFVTJ
+            // Guardians: https://www.amazon.com/Guardians-Galaxy-Movie-24x36-Poster/dp/B00LM3PI1U
+            let imageArray = ["blackpanther.jpg", "blackwidow.jpg", "captainamerica.jpg",
+                "captainmarvel.jpg", "guardians.jpg", "shangchi.jpg"
+            ];
+                let movieArray = ["Black Panther", "Black Widow", "Captain America", 
+                    "Captain Marvel", "Guardians of the Galaxy", "Shang-Chi"
+                ];
+                let yearArray = [2018, 2021, 2011, 2019, 2014, 2021];
+
+                let item = "";
+
+                function displayRandomQuestion(){
+                    console.log("Finish displayRandomQuestion()");
+                }
+                function checkAnswer(){
+                    console.log("Finish checkAnswer()");
+                }
+                //Description: Displays a picture of the poster when the trivia starts up
+                //Citation: N/A (This is OG code)
+                //Input/Parameters: inputArray, Index
+                //Output/Return: Displays a picture of the poster
+                function formatImage(inputArray, index){
+                    let fileName = inputArray[index];
+                    let output = "<img src='Posters/" + fileName + "' width=200 height =300>";
+                    return output;
+                }
+                //Description: Shows the full answer key to the user when requested
+                //Citation: N/A (This is OG code)
+                //Input/Parameters: none
+                //Output/Return: Shows the movie poster/name of the movie with the years as the answers
+                function viewAnswerKey(){
+                    let displayOutput = 'This is the full answer key. Refresh the page when you are done: <br>';
+                    for (let i = 0; i < imageArray.length; i++){
+                        displayOutput += formatImage(imageArray, i);
+                        displayOutput += '<br>';
+                        displayOutput += yearArray[i];
+                        displayOutput += '<br> <br>';
+                    }
+                    document.getElementById('divIdFullAnswerKey').innerHTML = displayOutput;
+                }
+                //Description: Generates the question asking the user "In what year was [movie] released?"
+                //Citation: N/A (This is OG code)
+                //Input/Parameters: inputArray & i  ndex
+                //Output/Return: Shows the question "In what year was [movie] released?" with the 6 movies.
+                function formatQuestion(inputArray, index){
+                    let item = inputArray[index];
+                    let output = "<h2>In what year was " + item + " released?</h2>";
+                    return output;
+                }
+                // Description: Return a random integer, n, such that min <= n <= max
+                // Input/Parameters: Two floating point numbers, min and max
+                // Output/Return: Returns a random integer between min and max
+                // Citation: Mozilla Foundation, https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
+                function randomInt(min, max) {
+                min = Math.ceil(min);
+                max = Math.floor(max);
+                return Math.floor(Math.random() * (max - min + 1)) + min; // inclusive on min and max
+                }
+                
+        </script>
+        <h1>Marvel Movie Quiz</h1>
+        <p>Write the year in which the Marvel movie was released.</p>
+        <div id="divIdPic"></div>
+        <div id="divIdQuestion"></div>
+        <input type="text" id="txtIdAnswer" placeholder="Type your answer here">
+        <input type="button" value="Check Answer" onClick="checkAnswer()">
+        <input type="button" value="Next Question" onClick="displayRandomQuestion()">
+        <input type="button" value="View Answer Key" onClick="viewAnswerKey()">
+        <div id="divIdAnswer"></div>
+        <div id="divIdFullAnswerKey"></div>
+    </body>
+</htmL>
